@@ -1,0 +1,99 @@
+@extends('layouts.master')
+
+@section('title', 'Admin Dashboard')
+
+@section('content')
+<div class="container-fixed">
+    <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
+     <div class="flex flex-col justify-center gap-2">
+      <h1 class="text-xl font-medium leading-none text-gray-900">
+      Edit User
+      </h1>
+      <div class="flex items-center gap-2 text-sm font-normal text-gray-700">
+    Edit User
+      </div>
+     </div>
+     <div class="flex items-center gap-2.5">
+      {{-- <a class="btn btn-sm btn-light" href="#">
+        Create User
+      </a>
+      <a class="btn btn-sm btn-primary" href="#">
+        Create User
+      </a> --}}
+     </div>
+    </div>
+   </div>
+   <!-- End of Container -->
+   <!-- Container -->
+   <div class="container-fixed">
+    <div class="grid gap-5 lg:gap-7.5 xl:w-[38.75rem] mx-auto">
+     <div class="card pb-2.5">
+      <div class="card-header" id="basic_settings">
+       <h3 class="card-title">
+        Edit User
+       </h3>
+       
+      </div>
+      <form action="{{ route ('admin.user.update_user', $data->id)}}" method="Post">
+        @csrf
+        <div class="card-body grid gap-5">
+            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                <label class="form-label max-w-56">
+                Select User
+                </label>
+               <select class="select" name="role_id" id="">
+                <option value=""></option>
+                <option value="2"{{old('role_id' , $data->role_id == 2 ? 'selected' : '')}}>Customer</option>
+                <option value="3"{{old('role_id' , $data->role_id == 3 ? 'selected' : '')}}>Publisher</option>
+                <option value="4" {{old('role_id' , $data->role_id == 4 ? 'selected' : '')}}>Content Writer</option>
+                <option value="5" {{old('role_id' , $data->role_id == 5 ? 'selected' : '')}}>Moderation</option>
+               </select>
+               </div>
+           <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+            <label class="form-label max-w-56">
+             Name
+            </label>
+            <input class="input" type="text" name="name" placeholder="Write Your Name" value="{{$data->name}}"/>
+           </div>
+          
+           <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+            <label class="form-label max-w-56">
+             Email
+            </label>
+            <input class="input" type="text" value="{{$data->email}}" name="email" placeholder="Write Your Email"/>
+           </div>
+           <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+            <label class="form-label max-w-56">
+             Password
+            </label>
+            <input class="input" placeholder="Write Your Password" name="password" type="password" value=""/>
+           </div>
+           <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+            <label class="form-label max-w-56">
+             Phone number
+            </label>
+            <input class="input" placeholder="Write Your Phone number" name="phone" type="text" value="{{$data->phone}}"/>
+           </div>
+           <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+            <label class="form-label max-w-56">
+             Address
+            </label>
+            <input class="input" placeholder="Write Your Address" name="address" type="text" value="{{$data->address}}"/>
+           </div>
+          
+           <div class="flex justify-end">
+            <button class="btn btn-primary" type="submit">
+             Save 
+            </button>
+           </div>
+          </div>
+      </form>
+     </div>
+   
+     
+    </div>
+   </div>
+   
+@endsection
+
+
